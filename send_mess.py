@@ -80,7 +80,7 @@ def run(id_target , message , sticker , my_cookie):
 
 
 #create object
-chucngungon = message(phu_id, mess, sticker_id, ["9", "15"]);
+chucngungon = message(phu_id, mess, sticker_id, ["9", "28"]);
 chucngungon2 = message(phu_id, mess2, sticker_id, ["9", "45"]);
 arr_mess = [
     chucngungon,
