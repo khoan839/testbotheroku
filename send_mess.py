@@ -7,7 +7,7 @@ long_id = "100015611230148"; # long
 phu_id = "100070223828066";
 mi_id = "100015963284971";
 gr_id = "5140856542665765";
-mess = 'this is heroku';
+mess = 'this is heroku 2';
 sticker_id = '';
 cookie = 'sb=HHvrYdoqbscL8bSOQQoanaZD; datr=HHvrYQjSI7Y6igOnhyFWcJx1; c_user=100013739145965; dpr=1; xs=19%3A7K0xYDLntGL0yg%3A2%3A1642832718%3A-1%3A6215%3A%3AAcUB1gIjdiK08Gw4Pxr_pXo4KspP3Kekzh3i_tjapLc; fr=0e7obCJKhj8UTHSMz.AWVV75s2jFt5pKYR6TFSBvrMp1U.Bh_kbk.b7.AAA.0.0.Bh_kbk.AWWP1QqF1WU; m_pixel_ratio=1; x-referer=eyJyIjoiL21lc3NhZ2VzL3JlYWQvP3RpZD1jaWQuYy4xMDAwMTM3MzkxNDU5NjUlM0ExMDAwNzAyMjM4MjgwNjYmZW50cnlwb2ludD1qZXdlbCZzdXJmYWNlX2hpZXJhcmNoeT11bmtub3duIiwiaCI6Ii9tZXNzYWdlcy9yZWFkLz90aWQ9Y2lkLmMuMTAwMDEzNzM5MTQ1OTY1JTNBMTAwMDcwMjIzODI4MDY2JmVudHJ5cG9pbnQ9amV3ZWwmc3VyZmFjZV9oaWVyYXJjaHk9dW5rbm93biIsInMiOiJtIn0%3D; wd=1349x381';
 
