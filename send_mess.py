@@ -95,8 +95,8 @@ def run(target_type, id_target , message , sticker , my_cookie):
 
 
 #create object
-chucngungon = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "10"]);
-chucngungon2 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "05"]);
+chucngungon = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "30"]);
+chucngungon2 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(04), "00"]);
 chucngungon3 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "40"]);
 # run(chucngungon.getData()['type_target'],chucngungon.getData()['id'], chucngungon.getData()['mess'], chucngungon.getData()['sticker_id'], cookie);
 arr_mess = [
