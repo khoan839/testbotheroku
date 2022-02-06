@@ -95,9 +95,9 @@ def run(target_type, id_target , message , sticker , my_cookie):
 
 
 #create object
-chucngungon = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "00"]);
+chucngungon = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "10"]);
 chucngungon2 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "05"]);
-chucngungon3 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "35"]);
+chucngungon3 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "40"]);
 # run(chucngungon.getData()['type_target'],chucngungon.getData()['id'], chucngungon.getData()['mess'], chucngungon.getData()['sticker_id'], cookie);
 arr_mess = [
     chucngungon,
@@ -111,7 +111,7 @@ while True:
     arr_time_now = time_now.split(" ")[1].split(".")[0].split(":");
     for x in arr_mess:
         if(arr_time_now[0] == x.getData()['time'][0] and arr_time_now[1] == x.getData()['time'][1] and not x.getData()['sended']):
-            a = run(x.getData()['id'], x.getData()['mess'], x.getData()['sticker_id'], cookie);
+            a = run(chucngungon.getData()['type_target'],x.getData()['id'], x.getData()['mess'], x.getData()['sticker_id'], cookie);
             if(a.status_code == 200):
                 x.sended = True;
                 strin = x.getData()['mess'] + ' | ' + x.getData()['sticker_id'] + ' | ' + x.getData()['id'] + ' | ' + arr_time_now[0] + ':' + arr_time_now[1] + '\n';
