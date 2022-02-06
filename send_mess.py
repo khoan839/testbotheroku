@@ -7,7 +7,7 @@ long_id = "100015611230148"; # long
 phu_id = "100070223828066";
 mi_id = "100015963284971";
 gr_id = "5140856542665765";
-mess = 'this is heroku 2';
+mess = 'sieu cap vip pro';
 sticker_id = '';
 cookie = 'sb=HHvrYdoqbscL8bSOQQoanaZD; datr=HHvrYQjSI7Y6igOnhyFWcJx1; c_user=100013739145965; dpr=1; xs=19%3A7K0xYDLntGL0yg%3A2%3A1642832718%3A-1%3A6215%3A%3AAcUB1gIjdiK08Gw4Pxr_pXo4KspP3Kekzh3i_tjapLc; fr=0e7obCJKhj8UTHSMz.AWVV75s2jFt5pKYR6TFSBvrMp1U.Bh_kbk.b7.AAA.0.0.Bh_kbk.AWWP1QqF1WU; m_pixel_ratio=1; x-referer=eyJyIjoiL21lc3NhZ2VzL3JlYWQvP3RpZD1jaWQuYy4xMDAwMTM3MzkxNDU5NjUlM0ExMDAwNzAyMjM4MjgwNjYmZW50cnlwb2ludD1qZXdlbCZzdXJmYWNlX2hpZXJhcmNoeT11bmtub3duIiwiaCI6Ii9tZXNzYWdlcy9yZWFkLz90aWQ9Y2lkLmMuMTAwMDEzNzM5MTQ1OTY1JTNBMTAwMDcwMjIzODI4MDY2JmVudHJ5cG9pbnQ9amV3ZWwmc3VyZmFjZV9oaWVyYXJjaHk9dW5rbm93biIsInMiOiJtIn0%3D; wd=1349x381';
 
@@ -79,30 +79,29 @@ def run(id_target , message , sticker , my_cookie):
 
 
 #create object
-chucngungon = message(phu_id, mess, sticker_id, ["06", "00"]);
+chucngungon = message(phu_id, mess, sticker_id, ["10", "45"]);
 
-run(chucngungon.getData()['id'], chucngungon.getData()['mess'], chucngungon.getData()['sticker_id'], cookie);
-# arr_mess = [
-    # chucngungon
-# ];
+arr_mess = [
+    chucngungon
+];
 # # time send mess
 
-# while True:
-    # time_now = str(datetime.datetime.now());
-    # arr_time_now = time_now.split(" ")[1].split(".")[0].split(":");
-    # for x in arr_mess:
-        # if(arr_time_now[0] == x.getData()['time'][0] and arr_time_now[1] == x.getData()['time'][1] and not x.getData()['sended']):
-            # a = run(x.getData()['id'], x.getData()['mess'], x.getData()['sticker_id'], cookie);
-            # if(a.status_code == 200):
-                # x.sended = True;
-                # strin = x.getData()['mess'] + ' | ' + x.getData()['sticker_id'] + ' | ' + x.getData()['id'] + ' | ' + arr_time_now[0] + ':' + arr_time_now[1] + '\n';
-                # with open('file.txt',"a", encoding='UTF-8') as f:
-                    # f.write(strin);
-                    # f.close();
-                # print('sended');
-            # else:
-                # print("send error");
-        # else:
-            # print("Send time: " ,  x.getData()['time'] , ' -- now: ' , arr_time_now);
-    # print("running...");
-    # time.sleep(10);
+while True:
+    time_now = str(datetime.datetime.now());
+    arr_time_now = time_now.split(" ")[1].split(".")[0].split(":");
+    for x in arr_mess:
+        if(arr_time_now[0] == x.getData()['time'][0] and arr_time_now[1] == x.getData()['time'][1] and not x.getData()['sended']):
+            a = run(x.getData()['id'], x.getData()['mess'], x.getData()['sticker_id'], cookie);
+            if(a.status_code == 200):
+                x.sended = True;
+                strin = x.getData()['mess'] + ' | ' + x.getData()['sticker_id'] + ' | ' + x.getData()['id'] + ' | ' + arr_time_now[0] + ':' + arr_time_now[1] + '\n';
+                with open('file.txt',"a", encoding='UTF-8') as f:
+                    f.write(strin);
+                    f.close();
+                print('sended');
+            else:
+                print("send error");
+        else:
+            print("Send time: " ,  x.getData()['time'] , ' -- now: ' , arr_time_now);
+    print("running...");
+    time.sleep(10);
