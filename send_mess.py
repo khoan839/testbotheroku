@@ -14,25 +14,44 @@ def changeTimeVnToUs(vn):
             return str(vn - 7)
         else:
             return "0" + str(vn - 7)
-    
+
+def getCovid():
+    res = requests.get("https://corona.lmao.ninja/v2/countries/vn").json();
+    return {
+        'country': res['country'],
+        'cases': res['cases'],
+        'deaths': res['deaths'],
+        'recovered': res['recovered']
+    }
+
+def covid_format(case, death, recover, date):
+    mess = """=== Thông tin Covid đây ===\n
+(*)Việt Nam ({date})(*)\n
+- Nhiễm : {case}
+- Tử Vong: {death}
+- Hồi Phục: {recover}\n
+====================""".format(date = date,case = case, death = death, recover = recover);
+    return mess;
 # <-----------------------NOTE---------------------->
 long_id = "100015611230148"; # long
 phu_id = "100070223828066";
 mi_id = "100015963284971";
 nam_id = "100013739145965";
 gr_id = "5140856542665765";
-mess = "Bot chào bạn nè, reply điiii";
-sticker_id = '789355237820057';
+hnl_gr = "2822081161230726";
+mess = "";
+sticker_id = ""
 cookie = 'sb=7KnuYYKiVhrCDNWvnTNCGpfj;datr=7KnuYfjwAS6urTHSIfbrzgbf;locale=vi_VN;c_user=100041633173329;m_pixel_ratio=1;x-referer=eyJyIjoiL21lc3NhZ2VzL3JlYWQvP3RpZD1jaWQuZy41MTQwODU2NTQyNjY1NzY1JmVudHJ5cG9pbnQ9amV3ZWwmc3VyZmFjZV9oaWVyYXJjaHk9dW5rbm93biIsImgiOiIvbWVzc2FnZXMvcmVhZC8%2FdGlkPWNpZC5nLjUxNDA4NTY1NDI2NjU3NjUmZW50cnlwb2ludD1qZXdlbCZzdXJmYWNlX2hpZXJhcmNoeT11bmtub3duIiwicyI6Im0ifQ%3D%3D;presence=C%7B%22t3%22%3A%5B%7B%22i%22%3A%22u.100041633173329%22%7D%5D%2C%22utc3%22%3A1644122576377%2C%22lm3%22%3A%22g.5140856542665765%22%2C%22v%22%3A1%7D;wd=354x695;xs=27%3AxX54TIvi3sX37Q%3A2%3A1644103964%3A-1%3A6291%3A%3AAcXc7nQiC_tLNHrhbZgelL5_kdba6slWtE_3rQfl2g;fr=0o0k76Oq380BFwE0y.AWUd_MFwQompwKHNP7Wr9g-BWFM.Bh_162.O1.AAA.0.0.Bh_162.AWWDcrx-8Bs;';
 
 class message:
-    def __init__(self,type_target = 'user',  id = '', mess = '', sticker_id = '', time = ["00", "00"], sended = False):
+    def __init__(self,type_target = 'user',  id = '', mess = '', sticker_id = '', time = ["00", "00"], sended = False, func = getCovid):
         self.type_target = type_target;
         self.id = id;
         self.mess = mess;
         self.sticker_id = sticker_id;
         self.time = time;
         self.sended = sended;
+        self.func = func;
     def getData(self):
         return {
             'type_target': self.type_target,
@@ -40,7 +59,8 @@ class message:
             'mess': self.mess,
             'sticker_id': self.sticker_id,
             'time': self.time,
-            'sended': self.sended
+            'sended': self.sended,
+            'func': self.func
         }
 
 def run(target_type, id_target , message , sticker , my_cookie):
@@ -95,23 +115,37 @@ def run(target_type, id_target , message , sticker , my_cookie):
 
 
 #create object
-chucngungon = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "30"]);
-chucngungon2 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(4), "00"]);
-chucngungon3 = message('user',nam_id, mess, sticker_id, [changeTimeVnToUs(22), "40"]);
+chucngungon = message('group',hnl_gr, 'data', "", [changeTimeVnToUs(6), "00"], False, getCovid);
+
+# if(chucngungon.getData()['mess'] == 'data'):
+    # data = chucngungon.getData()['func'](); 
+    # print(mess)
+    # #run(chucngungon.getData()['type_target'],chucngungon.getData()['id'], mess, chucngungon.getData()['sticker_id'], cookie);
+# else:
+    # print("huhu")
+    # #run(chucngungon.getData()['type_target'],chucngungon.getData()['id'], chucngungon.getData()['mess'], chucngungon.getData()['sticker_id'], cookie);
+
+
 # run(chucngungon.getData()['type_target'],chucngungon.getData()['id'], chucngungon.getData()['mess'], chucngungon.getData()['sticker_id'], cookie);
 arr_mess = [
-    chucngungon,
-    chucngungon2,
-    chucngungon3
+    chucngungon
 ];
-# # time send mess
+
 
 while True:
     time_now = str(datetime.datetime.now());
     arr_time_now = time_now.split(" ")[1].split(".")[0].split(":");
     for x in arr_mess:
+        # check time
         if(arr_time_now[0] == x.getData()['time'][0] and arr_time_now[1] == x.getData()['time'][1] and not x.getData()['sended']):
-            a = run(chucngungon.getData()['type_target'],x.getData()['id'], x.getData()['mess'], x.getData()['sticker_id'], cookie);
+            # check function get data
+            if(x.getData()['mess'] == 'data'):
+                data = x.getData()['func']();
+                new_mess = covid_format(data['cases'], data['deaths'], data['recovered'],str(datetime.date.today()));
+                a = run(chucngungon.getData()['type_target'],x.getData()['id'], new_mess, x.getData()['sticker_id'], cookie);
+            else:
+                a = run(chucngungon.getData()['type_target'],x.getData()['id'], x.getData()['mess'], x.getData()['sticker_id'], cookie);
+            #check success
             if(a.status_code == 200):
                 x.sended = True;
                 strin = x.getData()['mess'] + ' | ' + x.getData()['sticker_id'] + ' | ' + x.getData()['id'] + ' | ' + arr_time_now[0] + ':' + arr_time_now[1] + '\n';
